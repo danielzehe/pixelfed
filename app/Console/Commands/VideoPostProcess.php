@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 use App\Media;
 use App\Jobs\VideoPipeline\VideoPostProcess as Pipeline; 
 
-class VideoThumbnail extends Command
+class VideoPostProcess extends Command
 {
     /**
      * The name and signature of the console command.
