@@ -58,7 +58,7 @@ class VideoPostProcess implements ShouldQueue
             FFMpeg::open($base)->export()->toDisk('local')->addFilter('-codec', 'copy', '-map_metadata', '0', '-movflags', '+faststart')->save($save);
             $media->media_path = $save;
             $media->mime = 'video/mp4';
-
+            
             $local = Storage::disk('local');
             $media->size = $local->size($save);
             $media->save();
