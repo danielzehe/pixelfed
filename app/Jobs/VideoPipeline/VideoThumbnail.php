@@ -74,7 +74,7 @@ class VideoThumbnail implements ShouldQueue, ShouldBeUniqueUntilProcessing
     public function handle()
     {
         $media = $this->media;
-        if($media->mime != 'video/mp4') {
+        if($media->mime != 'video/mp4' && $media->mime != 'video/quicktime') {
             return;
         }
         $base = $media->media_path;

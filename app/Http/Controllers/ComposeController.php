@@ -7,6 +7,7 @@ use App\CollectionItem;
 use App\Hashtag;
 use App\Jobs\ImageOptimizePipeline\ImageOptimize;
 use App\Jobs\StatusPipeline\NewStatusPipeline;
+use App\Jobs\VideoPipeline\VideoPostProcess;
 use App\Jobs\VideoPipeline\VideoThumbnail;
 use App\Media;
 use App\MediaTag;
@@ -134,7 +135,9 @@ class ComposeController extends Controller
                 break;
 
             case 'video/mp4':
+            case 'video/quicktime':
                 VideoThumbnail::dispatch($media)->onQueue('mmo');
+                VideoPostProcess::dispatch($media)->onQueue('mmo');
                 $preview_url = '/storage/no-preview.png';
                 $url = '/storage/no-preview.png';
                 break;
@@ -741,6 +744,7 @@ class ComposeController extends Controller
             case 'image/jpeg':
             case 'image/png':
             case 'video/mp4':
+            case 'video/quicktime':
                 $finished = (bool) config_cache('pixelfed.cloud_storage') ? (bool) $media->cdn_url : (bool) $media->processed_at;
                 break;
 

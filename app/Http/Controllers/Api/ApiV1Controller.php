@@ -30,6 +30,7 @@ use App\Jobs\SharePipeline\SharePipeline;
 use App\Jobs\SharePipeline\UndoSharePipeline;
 use App\Jobs\StatusPipeline\NewStatusPipeline;
 use App\Jobs\StatusPipeline\StatusDelete;
+use App\Jobs\VideoPipeline\VideoPostProcess;
 use App\Jobs\VideoPipeline\VideoThumbnail;
 use App\Like;
 use App\Media;
@@ -1825,7 +1826,9 @@ class ApiV1Controller extends Controller
                 break;
 
             case 'video/mp4':
+            case 'video/quicktime':
                 VideoThumbnail::dispatch($media)->onQueue('mmo');
+                VideoPostProcess::dispatch($media)->onQueue('mmo');
                 $preview_url = '/storage/no-preview.png';
                 $url = '/storage/no-preview.png';
                 break;
@@ -2047,7 +2050,9 @@ class ApiV1Controller extends Controller
                 break;
 
             case 'video/mp4':
+            case 'video/quicktime':
                 VideoThumbnail::dispatch($media)->onQueue('mmo');
+                VideoPostProcess::dispatch($media)->onQueue('mmo');
                 $preview_url = '/storage/no-preview.png';
                 $url = '/storage/no-preview.png';
                 break;
