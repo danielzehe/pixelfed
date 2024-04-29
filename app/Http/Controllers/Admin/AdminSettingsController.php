@@ -69,6 +69,7 @@ trait AdminSettingsController
             'type_png' => 'nullable',
             'type_gif' => 'nullable',
             'type_mp4' => 'nullable',
+            'type_quicktime' => 'nullable',
             'type_webp' => 'nullable',
             'admin_account_id' => 'nullable',
             'regs' => 'required|in:open,filtered,closed',
@@ -127,6 +128,7 @@ trait AdminSettingsController
             'type_png' => 'image/png',
             'type_gif' => 'image/gif',
             'type_mp4' => 'video/mp4',
+            'type_quicktime' => 'video/quicktime',
             'type_webp' => 'image/webp',
         ];
 
