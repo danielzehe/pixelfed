@@ -95,11 +95,11 @@ class VideoThumbnail implements ShouldQueue, ShouldBeUniqueUntilProcessing
             $media->thumbnail_path = $save;
             $media->save();
 
-            $blurhash = Blurhash::generate($media);
-            if($blurhash) {
-                $media->blurhash = $blurhash;
-                $media->save();
-            }
+            // $blurhash = Blurhash::generate($media);
+            // if($blurhash) {
+            //     $media->blurhash = $blurhash;
+            //     $media->save();
+            // }
 
             if(config('media.hls.enabled')) {
                 VideoHlsPipeline::dispatch($media)->onQueue('mmo');
