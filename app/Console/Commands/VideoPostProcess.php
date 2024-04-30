@@ -45,7 +45,7 @@ class VideoPostProcess extends Command
                         ->take($limit)
                         ->get();
         foreach($videos as $video) {
-            Pipeline::dispatchNow($video);
+            Pipeline::dispatch($video);
         }
     }
 }
