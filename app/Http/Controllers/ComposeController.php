@@ -127,6 +127,7 @@ class ComposeController extends Controller
         $preview_url = $media->url().'?v='.time();
         $url = $media->url().'?v='.time();
 
+        print($media->mime);
         switch ($media->mime) {
             case 'image/jpeg':
             case 'image/png':
